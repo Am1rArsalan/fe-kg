@@ -16,7 +16,7 @@ const useSync = (
       setIsSyncing(true);
       await syncFunc(selectedCity.value.latitude, selectedCity.value.longitude);
       setIsSyncing(false);
-    }, 3000);
+    }, 30000);
 
     setPollingInterval(interval as unknown as number);
   };

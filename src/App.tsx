@@ -3,7 +3,6 @@ import CountrySelector from "./components/CountrySelector";
 import CitySelector from "./components/CitySelector";
 import WeatherButton from "./components/WeatherButton";
 import WeatherDetails from "./components/WeatherDetails";
-import DayNightInfo from "./components/DayAndNightInfo";
 import WeatherCharts from "./components/WeatherCharts";
 import WeatherCards from "./components/WeatherCards";
 import useCountries from "./hooks/useCountries";
@@ -44,39 +43,41 @@ const App = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col space-y-4">
-      <div className="flex flex-col bg-teal-800 p-4 space-y-4">
-        <div className="flex flex-col space-y-4 items-center w-full">
-          <CountrySelector
-            allCountries={allCountries}
+    <div className="max-w-7xl mx-auto flex flex-row space-x-4">
+      <div className="w-1/4 flex flex-col items-center space-y-4 bg-gray-100 p-4">
+        <WeatherCards dailyDetails={dailyData} />
+      </div>
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col space-y-4">
+        <div className="flex flex-col bg-teal-800 p-4 space-y-4">
+          <div className="flex flex-col space-y-4 items-center w-full">
+            <CountrySelector
+              allCountries={allCountries}
+              selectedCountry={selectedCountry}
+              onChange={handleSelectedCountry}
+            />
+
+            <CitySelector
+              cities={cityOptions}
+              selectedCity={selectedCity}
+              onChange={handleSelectedCity}
+            />
+
+            <WeatherButton onClick={handleWeatherFetch}>
+              {isSyncing ? "Fetching..." : "Fetch Weather data"}
+            </WeatherButton>
+          </div>
+
+          <WeatherDetails
             selectedCountry={selectedCountry}
-            onChange={handleSelectedCountry}
-          />
-
-          <CitySelector
-            cities={cityOptions}
             selectedCity={selectedCity}
-            onChange={handleSelectedCity}
           />
-
-          <WeatherButton onClick={handleWeatherFetch}>
-            {isSyncing ? "Syncing Weather Data" : "Fetch Weather data"}
-          </WeatherButton>
         </div>
 
-        <WeatherDetails
-          selectedCountry={selectedCountry}
-          selectedCity={selectedCity}
-        />
-        <DayNightInfo data={dailyData} />
-      </div>
-
-      <div className="mt-5 w-full">
-        <WeatherCharts hourlyData={hourlyData} />
-      </div>
-
-      <div className="w-full flex flex-col items-center mt-4">
-        <WeatherCards dailyDetails={dailyData} />
+        <div className="mt-5 w-full">
+          <WeatherCharts hourlyData={hourlyData} />
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ type WeatherCardsProps = {
 
 const WeatherCards: React.FC<WeatherCardsProps> = ({ dailyDetails }) => {
   return (
-    <div className="flex justify-center space-x-4 w-10/12">
+    <div className="flex flex-col items-center space-y-4 w-10/12">
       <Card
         decoration="top"
         decorationColor="pink"

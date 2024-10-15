@@ -8,17 +8,15 @@ const useCountries = () => {
 
   useEffect(() => {
     setAllCountries(
-      Country.getAllCountries()
-        .splice(10, 30)
-        .map((country) => ({
-          value: {
-            name: country.name,
-            latitude: country.latitude,
-            longitude: country.longitude,
-            isoCode: country.isoCode,
-          },
-          label: country.name,
-        })),
+      Country.getAllCountries().map((country) => ({
+        value: {
+          name: country.name,
+          latitude: country.latitude,
+          longitude: country.longitude,
+          isoCode: country.isoCode,
+        },
+        label: country.name,
+      })),
     );
   }, []);
 
