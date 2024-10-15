@@ -1,5 +1,4 @@
 import "./App.css";
-import React from "react";
 import CountrySelector from "./components/CountrySelector";
 import CitySelector from "./components/CitySelector";
 import WeatherButton from "./components/WeatherButton";
@@ -10,6 +9,7 @@ import WeatherCards from "./components/WeatherCards";
 import useCountries from "./hooks/useCountries";
 import useCities from "./hooks/useCities";
 import useWeather from "./hooks/useWeather";
+import useSync from "./hooks/useSync";
 
 export type Option = {
   value: {
@@ -29,6 +29,8 @@ const App = () => {
   );
   const { fetchWeatherByCoordinates, dailyData, hourlyData } = useWeather();
 
+  const { startLongPolling, isSyncing } = useSync(fetchWeatherByCoordinates);
+
   const handleWeatherFetch = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (selectedCity) {
@@ -36,6 +38,8 @@ const App = () => {
         selectedCity.value.latitude,
         selectedCity.value.longitude,
       );
+
+      startLongPolling(selectedCity);
     }
   };
 
@@ -55,7 +59,9 @@ const App = () => {
             onChange={handleSelectedCity}
           />
 
-          <WeatherButton onClick={handleWeatherFetch} />
+          <WeatherButton onClick={handleWeatherFetch}>
+            {isSyncing ? "Syncing Weather Data" : "Fetch Weather data"}
+          </WeatherButton>
         </div>
 
         <WeatherDetails
