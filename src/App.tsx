@@ -48,7 +48,6 @@ const App = () => {
         <WeatherCards dailyDetails={dailyData} />
       </div>
 
-      {/* Main content */}
       <div className="flex-1 flex flex-col space-y-4">
         <div className="flex flex-col bg-teal-800 p-4 space-y-4">
           <div className="flex flex-col space-y-4 items-center w-full">

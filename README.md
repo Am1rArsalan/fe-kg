@@ -1,50 +1,68 @@
-# React + TypeScript + Vite
+# Weather Application Frontend 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This frontend is a Client-Side Rendered (CSR) application developed using React, with the setup done through Vite. It visualizes weather data using Recharts and integrates with the backend GraphQL API to fetch and display weather information.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Setup
 
-## Expanding the ESLint configuration
+### Prerequisites
+- Node.js (v16+ recommended)
+- Docker (for containerized deployment, optional)
+- Ensure the backend is running (setup guide available [here](https://github.com/Am1rArsalan/be-kg)).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Running the Frontend Locally
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository and navigate to the project directory:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+   ```bash
+   git clone <your-frontend-repo-url>
+   cd <frontend-project-folder>
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+   ```bash
+   npm install
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. The application will be available at [http://localhost:5173/](http://localhost:5173/).
+
+### Project Structure
+
+- **`src/`**: Contains the source code of the application.
+  - **`assets/`**: Static assets like fonts and images.
+  - **`components/`**: Reusable React components such as:
+    - `AreaChartCard.tsx`, `LineChartCard.tsx`: For chart visualizations.
+    - `CitySelector.tsx`, `CountrySelector.tsx`: To select location details.
+    - `WeatherButton.tsx`, `WeatherCards.tsx`, `WeatherCharts.tsx`, `WeatherDetails.tsx`: Components to display weather information.
+  - **`hooks/`**: Custom hooks for managing logic, including:
+    - `useWeather.ts`: Fetches weather data using GraphQL.
+    - `useCities.ts`, `useCountries.ts`: Fetches city and country data.
+    - `useSync.ts`: Syncs data between components.
+  - **`App.tsx`**: Main application component.
+  - **`main.tsx`**: Entry point of the application.
+  - **`App.css`**, **`index.css`**: CSS styles for the application.
+
+### Data Visualization
+
+- **Recharts**: Used for rendering weather data in charts, including line and area charts for visualizing trends.
+- **Temor**: A wrapper around Recharts that simplifies working with charts.
+
+### Styling
+
+- **Tailwind CSS**: The application uses Tailwind CSS for styling. This is the first time Tailwind has been used in this project, keeping the UI simple and clean.
+
+### GraphQL Integration
+
+- **Apollo Client**: Apollo is used as the GraphQL client to query the backend and fetch weather data. Make sure the backend GraphQL API is running for proper data fetching.
+
+## Deployment
+
+To deploy the project using Docker, you can refer to the infrastructure setup available [here](https://github.com/Am1rArsalan/kg-infra). Docker configurations for both the frontend and backend services are provided there.
