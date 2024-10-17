@@ -61,7 +61,7 @@ The application uses **long polling** for real-time updates on weather data. Thi
 
 ### Styling
 
-- **Tailwind CSS**: The application uses Tailwind CSS for styling. This is the first time Tailwind has been used in this project, keeping the UI simple and clean.
+- **Tailwind CSS**: The application uses Tailwind CSS for styling. This is the first time Tailwind has been used by me in this project, keeping the UI simple and clean.
 
 ### GraphQL Integration
 
