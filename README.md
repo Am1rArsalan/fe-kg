@@ -45,7 +45,7 @@ This frontend is a Client-Side Rendered (CSR) application developed using React,
   - **`hooks/`**: Custom hooks for managing logic, including:
     - `useWeather.ts`: Fetches weather data using GraphQL.
     - `useCities.ts`, `useCountries.ts`: Fetches city and country data.
-    - `useSync.ts`: Syncs data between components and implements **long polling** for real-time data updates. You can learn more about the long polling pattern by reviewing the `useSync` hook in the source code.
+    - `useSync.ts`: implements **long polling** for real-time data updates. You can learn more about the long polling pattern by reviewing the `useSync` hook in the source code.
   - **`App.tsx`**: Main application component.
   - **`main.tsx`**: Entry point of the application.
   - **`App.css`**, **`index.css`**: CSS styles for the application.
